@@ -1,0 +1,86 @@
+# Implement Max Heap
+
+## Problem Statement
+
+Implement a **Max Heap** with the following operations:
+
+* `insert(x)` → Insert value `x` into the heap.
+* `getMax()` → Return the maximum value in the heap.
+* `extractMax()` → Remove and return the maximum value.
+* `heapSize()` → Return the current size of the heap.
+* `isEmpty()` → Return whether the heap is empty.
+* `changeKey(index, value)` → Update the value at the given index.
+* `initializeHeap()` → Initialize an empty heap.
+
+### Note
+
+When extracting the maximum element, if both left and right children have the same value, swap with the **left child**.
+
+---
+
+## Approach
+
+A Max Heap is a complete binary tree where every parent node is greater than or equal to its children.
+
+The heap is represented using an array:
+
+* Parent Index: `(i - 1) / 2`
+* Left Child: `2 * i + 1`
+* Right Child: `2 * i + 2`
+
+### Operations
+
+#### 1. Insert
+
+1. Insert the element at the end of the array.
+2. Perform **heapify-up** (bubble-up).
+3. Continue swapping with the parent while the heap property is violated.
+
+#### 2. Extract Max
+
+1. Swap the root with the last element.
+2. Remove the last element.
+3. Perform **heapify-down** from the root.
+
+#### 3. Change Key
+
+* If the new value is larger than the old value:
+
+  * Perform **heapify-up**.
+* Otherwise:
+
+  * Perform **heapify-down**.
+
+---
+
+## Complexity Analysis
+
+| Operation   | Time Complexity |
+| ----------- | --------------- |
+| Insert      | O(log n)        |
+| Extract Max | O(log n)        |
+| Get Max     | O(1)            |
+| Change Key  | O(log n)        |
+| Heap Size   | O(1)            |
+| Is Empty    | O(1)            |
+
+### Space Complexity
+
+[
+O(n)
+]
+
+where (n) is the number of elements stored in the heap.
+
+---
+
+## Key Learning
+
+A heap supports efficient retrieval and deletion of the maximum element.
+
+The two fundamental operations are:
+
+* **Heapify Up** (used after insertion or increasing a key)
+* **Heapify Down** (used after deletion or decreasing a key)
+
+Understanding these two operations is enough to implement most heap-based problems.
