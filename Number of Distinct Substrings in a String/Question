@@ -1,0 +1,177 @@
+# TUF - Number of Distinct Substrings in a String
+
+## Problem Statement
+
+Given a string `s`, determine the number of **distinct substrings** (including the empty substring) of the given string.
+
+A string `B` is a substring of a string `A` if `B` can be obtained by deleting several characters (possibly none) from the start of `A` and several characters (possibly none) from the end of `A`.
+
+Two strings are considered different if they differ at least at one position.
+
+---
+
+## Examples
+
+### Example 1
+
+**Input:**
+
+```text
+s = "aba"
+```
+
+**Output:**
+
+```text
+6
+```
+
+**Explanation:**
+
+Distinct substrings are:
+
+```text
+"", "a", "ab", "aba", "b", "ba"
+```
+
+---
+
+### Example 2
+
+**Input:**
+
+```text
+s = "abc"
+```
+
+**Output:**
+
+```text
+7
+```
+
+**Explanation:**
+
+Distinct substrings are:
+
+```text
+"", "a", "ab", "abc", "b", "bc", "c"
+```
+
+---
+
+## Approach: Trie
+
+### Key Observation
+
+Each **new node** created while inserting all suffixes into a Trie represents a **new distinct substring**.
+
+The **root node** represents the **empty substring**.
+
+### Algorithm
+
+1. Initialize an empty Trie.
+2. Insert all suffixes of the string into the Trie.
+3. Count the total number of nodes in the Trie.
+4. The answer is equal to the total number of nodes.
+
+---
+
+## Complexity Analysis
+
+### Time Complexity
+
+- Inserting all suffixes: **O(N²)**
+- Counting Trie nodes: **O(Number of Trie Nodes)**
+
+Overall:
+
+```text
+O(N²)
+```
+
+### Space Complexity
+
+```text
+O(N²)
+```
+
+for storing Trie nodes in the worst case.
+
+---
+
+## Java Solution
+
+```java
+class Solution {
+    static class Node {
+        Node children[] = new Node[26];
+
+        public Node() {
+            for (int i = 0; i < 26; i++) {
+                children[i] = null;
+            }
+        }
+    }
+
+    public static Node root;
+
+    public static void insert(String word) {
+        Node curr = root;
+
+        for (int i = 0; i < word.length(); i++) {
+            int idx = word.charAt(i) - 'a';
+
+            if (curr.children[idx] == null) {
+                curr.children[idx] = new Node();
+            }
+
+            curr = curr.children[idx];
+        }
+    }
+
+    public int countNodes(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int count = 0;
+
+        for (int i = 0; i < 26; i++) {
+            count += countNodes(root.children[i]);
+        }
+
+        return count + 1;
+    }
+
+    public int countDistinctSubstring(String s) {
+        root = new Node();
+
+        for (int i = 0; i < s.length(); i++) {
+            insert(s.substring(i));
+        }
+
+        return countNodes(root);
+    }
+}
+```
+
+---
+
+## Learning
+
+- Tries can be used for problems beyond prefix searching.
+- Each unique path in a Trie corresponds to a unique substring.
+- Reset static data structures before handling multiple test cases.
+- The root node contributes to the count as the empty substring.
+
+---
+
+## Tags
+
+```text
+Trie
+Strings
+Data Structures
+TUF
+```
