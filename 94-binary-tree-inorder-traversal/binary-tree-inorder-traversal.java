@@ -14,16 +14,32 @@
  * }
  */
 class Solution {
-     List<Integer> list=new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
-                     if(root==null){
-            return list;
+         List<Integer> ans=new ArrayList<>();
+        TreeNode curr=root;
+        while(curr!=null){
+            //if left is null 
+            if(curr.left==null){
+                ans.add(curr.val);
+                curr=curr.right; //go right
+            }else{
+            TreeNode pred=curr.left; //left subtree
+            while(pred.right!=null && pred.right!=curr){
+                pred=pred.right; //rightmost in the left subtree to find inorder predecessor 
+            }
+            if(pred.right==null){//if there is no thread, create a thread
+                pred.right=curr; // connect rightmost child of left subtree to
+                //the curr
+                curr=curr.left;//traverse left
+            }else{
+                pred.right=null; //if thread already exists,we have traveresed that path so remove the thread
+                ans.add(curr.val); //print current
+                curr=curr.right;//traverse right 
+
+            }
         }
-        inorderTraversal(root.left);
-        list.add(root.val);
-        inorderTraversal(root.right);
-        return list;
-        
-        
+
+        }
+        return ans;
     }
 }
