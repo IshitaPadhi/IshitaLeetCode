@@ -1,4 +1,4 @@
-class Solution {
+class Solution {//O(n^2)->TC AND SC
     public  int lcs(int nums1[],int nums2[]){
         int n=nums1.length;
         int m=nums2.length;
