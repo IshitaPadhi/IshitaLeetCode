@@ -1,4 +1,4 @@
-class Solution {
+class Solution {//O(n)
     public void rev(int nums[],int start,int end){
         while(start<end){
             swap(nums,start,end);
