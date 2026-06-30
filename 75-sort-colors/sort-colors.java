@@ -4,7 +4,7 @@ class Solution {
     nums[n1]=nums[n2];
     nums[n2]=t;
 }
-    public void sortColors(int[] nums) {
+    public void sortColors(int[] nums) {//nlogn in case if normal sorting while Dutch National Flag Algorithm -O(n)
       /* int n=nums.length;
        int c0=0,c1=0,c2=0;
        for(int i=0;i<n;i++){
