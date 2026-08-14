@@ -46,7 +46,7 @@
 
 //     }
 // }
-class Solution{
+class Solution{ //O(n) is tc and sc is also O(n)
      public int longestConsecutive(int nums[]){
         int n=nums.length;
         if(n==0)return 0;
