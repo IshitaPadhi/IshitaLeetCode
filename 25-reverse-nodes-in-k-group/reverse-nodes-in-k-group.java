@@ -19,7 +19,7 @@ class Solution {
             prev=temp; //bring prev to the current pos
             temp=front;//move temp to the next node
         }
-        return head;
+        return prev;
     }
     public ListNode getKthNode(ListNode temp,int k){
         k--;
