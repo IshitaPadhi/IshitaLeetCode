@@ -9,7 +9,7 @@
  *     }
  * }
  */
-// public class Solution {//TC- O(n) and SC-O(n)
+//public class Solution {//TC- O(n) and SC-O(n)
 //     public ListNode detectCycle(ListNode head) {
 //         HashMap<ListNode,Integer>map=new HashMap<>();
 //         ListNode temp=head;
