@@ -1,19 +1,24 @@
 class Solution {
     public int trap(int[] height) {
         int n=height.length;
-        int prefix[]=new int[n];
-        prefix[0]=height[0];
-        //build maxium prefix array
-        for(int i=1;i<n;i++){
-            prefix[i]=Math.max(prefix[i-1],height[i]);
+        int l=0;
+        int r=n-1;
+        int lmax=0;
+        int rmax=0;
+        int ans=0;
+        while(l<r){
+            lmax=Math.max(lmax,height[l]);
+            rmax=Math.max(rmax,height[r]);
+            if(lmax<rmax){
+                //left is the deciding factor
+                ans+=lmax-height[l];
+                l++;
+
+            }else{
+                ans+=rmax-height[r];
+                r--;
+            }
         }
-        int rightMax=0;
-        int total=0;
-        for(int i=n-1;i>=0;i--){
-            rightMax=Math.max(rightMax,height[i]);
-            int leftMax=prefix[i];
-            total+=Math.min(leftMax,rightMax)-height[i];
-        }
-        return total;
+        return ans;
     }
 }
