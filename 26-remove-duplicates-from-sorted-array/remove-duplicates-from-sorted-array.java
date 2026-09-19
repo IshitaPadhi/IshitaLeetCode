@@ -12,15 +12,31 @@
 //         return index;
 //     }
 // }
-class Solution{//TC O(n) SC-O(1)
-     public int removeDuplicates(int[] nums){
-        int index=1;
-        for(int i=1;i<nums.length;i++){
-            if(nums[i]!=nums[i-1]){
-                nums[index]=nums[i];
-                index++;
+// class Solution{//TC O(n) SC-O(1)
+//      public int removeDuplicates(int[] nums){
+//         int index=1;
+//         for(int i=1;i<nums.length;i++){
+//             if(nums[i]!=nums[i-1]){
+//                 nums[index]=nums[i];
+//                 index++;
+//             }
+//         }
+//         return index;
+//      }
+// }
+//OR TWO POINTER APPRAOCH
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 0;
+
+        for (int j = 1; j < nums.length; j++) {
+
+            if (nums[i] != nums[j]) {
+                nums[i + 1] = nums[j];
+                i++;
             }
         }
-        return index;
-     }
+
+        return i + 1;
+    }
 }
